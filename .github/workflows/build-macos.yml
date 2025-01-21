@@ -1,0 +1,36 @@
+name: Build Ghostty for macOS
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-12
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Zig
+      run: |
+        brew install zig@0.13
+        echo 'export PATH="/usr/local/opt/zig@0.13/bin:$PATH"' >> $GITHUB_ENV
+
+    - name: Build Ghostty
+      run: |
+        zig build -Doptimize=ReleaseFast -target=aarch64-macos
+
+    - name: Build Mac App
+      run: |
+        cd macos && xcodebuild -arch arm64
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ghostty-macos
+        path: macos/build/ReleaseLocal/Ghostty.app
