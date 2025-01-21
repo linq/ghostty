@@ -31,7 +31,7 @@ jobs:
         cd macos && xcodebuild -arch arm64
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: ghostty-macos
         path: macos/build/ReleaseLocal/Ghostty.app
