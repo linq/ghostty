@@ -19,8 +19,7 @@ jobs:
 
     - name: Set up Zig
       run: |
-        brew install zig@0.13
-        echo 'export PATH="/usr/local/opt/zig@0.13/bin:$PATH"' >> $GITHUB_ENV
+        brew install zig
 
     - name: Build Ghostty
       run: |
