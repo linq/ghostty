@@ -23,7 +23,7 @@ jobs:
 
     - name: Build Ghostty
       run: |
-        zig build -Doptimize=ReleaseFast -target aarch64-macos
+        zig build -Doptimize=ReleaseFast -Dtarget=aarch64-macos
 
     - name: Build Mac App
       run: |
