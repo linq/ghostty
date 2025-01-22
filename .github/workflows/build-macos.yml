@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:  # 添加这个行以支持手动触发
+  workflow_dispatch:
 
 jobs:
   build:
@@ -23,11 +23,11 @@ jobs:
 
     - name: Build Ghostty
       run: |
-        zig build -Doptimize=ReleaseFast -Dtarget=aarch64-macos
+        zig build -Doptimize=ReleaseFast
 
     - name: Build Mac App
       run: |
-        cd macos && xcodebuild -arch arm64
+        cd macos && xcodebuild
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
